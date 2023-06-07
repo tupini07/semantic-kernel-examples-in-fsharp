@@ -62,9 +62,6 @@ let createNovel (kernel: IKernel) =
     kernel.ImportSkill(FileSystemSkill(), "FileSystemSkill")
     |> fun s -> printfn "Imported skills %A" s.Keys
 
-    kernel.ImportSkill(TextMemorySkill(), "TextMemorySkill")
-    |> fun s -> printfn "Imported skills %A" s.Keys
-
     let plannerConfig = SequentialPlannerConfig()
     plannerConfig.MaxTokens <- 2048
 
