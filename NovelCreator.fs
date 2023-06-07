@@ -78,4 +78,8 @@ let createNovel (kernel: IKernel) =
     printPlan plan
 
     printfn "Running plan..."
+
+    // Note another possibility is to use `kernel.RunAsync(plan)` which will run
+    // the whole plan and report the output. But I wanted a custom run loop to
+    // be able to log progress and see what's going on inside.
     runPlan kernel plan |> Async.RunSynchronously
