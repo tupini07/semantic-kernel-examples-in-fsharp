@@ -79,17 +79,3 @@ let createNovel (kernel: IKernel) =
 
     printfn "Running plan..."
     runPlan kernel plan |> Async.RunSynchronously
-
-//     printfn "Running text completion example..."
-
-
-//     let context = ContextVariables()
-//     context.Set("input", "Time travel to dinosaur age")
-//     context.Set("style", "Dank")
-
-//     let result =
-//         kernel.RunAsync(context, skill.["Joke"])
-//         |> Async.AwaitTask
-//         |> Async.RunSynchronously
-
-//     printfn "%A" result
