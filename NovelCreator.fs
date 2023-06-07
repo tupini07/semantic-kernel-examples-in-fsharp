@@ -7,6 +7,7 @@ open Microsoft.SemanticKernel.Planning
 open Microsoft.SemanticKernel.Planning.Sequential
 open System
 open FileSystemSkill
+open Microsoft.SemanticKernel.CoreSkills
 
 let rec private runPlan (kernel: IKernel) (plan: Plan) =
     async {
@@ -61,6 +62,9 @@ let createNovel (kernel: IKernel) =
     kernel.ImportSkill(FileSystemSkill(), "FileSystemSkill")
     |> fun s -> printfn "Imported skills %A" s.Keys
 
+    kernel.ImportSkill(TextMemorySkill(), "TextMemorySkill")
+    |> fun s -> printfn "Imported skills %A" s.Keys
+
     let plannerConfig = SequentialPlannerConfig()
     plannerConfig.MaxTokens <- 2048
 
@@ -76,6 +80,14 @@ let createNovel (kernel: IKernel) =
         |> Async.RunSynchronously
 
     printPlan plan
+
+    // ask user if we should proceed with plan
+    printfn "Proceed with plan? (y/n)"
+    let proceed = Console.ReadLine() = "y"
+
+    if not proceed then
+        printfn "Stopping execution..."
+        exit 0
 
     printfn "Running plan..."
 
