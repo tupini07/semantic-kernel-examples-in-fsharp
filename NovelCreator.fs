@@ -42,9 +42,13 @@ let private printPlan (plan: Plan) =
             |> Seq.map (fun kvp -> sprintf "%s='%s'" kvp.Key kvp.Value)
             |> String.concat ", "
 
-        let outputs = step.Outputs |> String.concat ", "
+        let outputs =
+            if step.Outputs.Count > 0 then
+                "=> " + (step.Outputs |> String.concat ", ")
+            else
+                ""
 
-        printfn "> %s.%s [%s] => %s" step.SkillName step.Name paramsS outputs
+        printfn "> %s.%s [%s] %s" step.SkillName step.Name paramsS outputs
 
     printfn ""
 
