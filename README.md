@@ -8,4 +8,8 @@ Create a config.json
 cp config/appsettings.example.json config/appsettings.json
 ```
 
-Then fill in `config.json` with the appropriate values.
+Then fill in `config.json` with the appropriate values. Then run:
+
+```bash
+dotnet run
+```
