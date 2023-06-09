@@ -1,5 +1,7 @@
 # SK examples in F#
 
+This is a very much WIP set of examples of using Semantic Kernel in F#.
+
 ## To run
 
 Create a config.json
