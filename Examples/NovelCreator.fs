@@ -13,6 +13,8 @@ open Microsoft.Extensions.Logging
 open KernelBuilderExtensions
 
 let createNovel () =
+    printfn "Running novel creator example ..."
+
     let loggerFactory =
         LoggerFactory.Create (fun builder ->
             builder
@@ -47,7 +49,7 @@ let createNovel () =
         SequentialPlanner(kernel, plannerConfig)
         |> fun p ->
             p.CreatePlanAsync(
-                "Create a book with 3 chapters about a llama trying to order a coffee from a turtle in the forest. After every chapter is generated, save it to a file. Use the same file for all chapters. Name the file something that is relevant to the story, and indicate where each chapter starts."
+                "Create a book with 3 chapters about a llama trying to order a coffee from a turtle in the forest. Save the story to a file. Name the file something that is relevant to the story, and indicate where each chapter starts."
             )
         |> Async.AwaitTask
         |> Async.RunSynchronously

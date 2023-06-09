@@ -5,10 +5,10 @@ let rec main argv =
     printfn
         """
 ===================================        
-What do you want to do?
+Which example do you want to run?
 
-1) Run the helpful chatbot example
-2) Run the novel generation example
+1) Novel Creator
+2) Question Answerer
 q) Quit
 
 Enter your input:"""
@@ -18,8 +18,8 @@ Enter your input:"""
     printfn "==================================="
     
     match input with
-    | "1" -> HelpfulChat.runHelpfulChatbot ()
-    | "2" -> NovelCreator.createNovel ()
+    | "1" -> NovelCreator.createNovel ()
+    | "2" -> QuestionAnswerer.answerQuestion ()
     | "q" ->
         printfn "Bye!"
         exit 0

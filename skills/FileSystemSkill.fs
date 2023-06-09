@@ -1,11 +1,9 @@
 module FileSystemSkill
 
-open Microsoft.SemanticKernel
 open Microsoft.SemanticKernel.SkillDefinition
 open Microsoft.SemanticKernel.Orchestration
 open System.IO
 open System
-open FSharpPlus
 
 type FileSystemSkill() =
     static member GetFullFilePath filePath =
@@ -25,7 +23,7 @@ type FileSystemSkill() =
 
         File.ReadAllText(fullFilePath)
 
-    [<SKFunction("Append text to a document. If the document doesn't exist, it will be created.")>]
+    [<SKFunction("Append text to a document")>]
     [<SKFunctionInput(Description = "Text to append")>]
     [<SKFunctionContextParameter(Name = "filePath", Description = "Destination file path")>]
 

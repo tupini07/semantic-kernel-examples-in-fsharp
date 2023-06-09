@@ -1,4 +1,4 @@
-module HelpfulChat
+module QuestionAnswerer
 
 open Microsoft.SemanticKernel
 open KernelSettings
@@ -40,13 +40,14 @@ let private createKernel () =
     kernel
 
 
-let runHelpfulChatbot () =
-    printfn "Running helpful chatbot ..."
+let answerQuestion () =
+    printfn "Running question answerer example ..."
 
     let kernel = createKernel ()
 
     let planner = SequentialPlanner(kernel)
 
+    // Tell the planner to look for something on the web and report back
     let plan =
         planner.CreatePlanAsync("Who is the girlfriend of Elon Musk? What is her age and height?")
         |> Async.AwaitTask
