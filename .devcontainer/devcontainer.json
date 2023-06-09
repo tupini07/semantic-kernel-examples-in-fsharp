@@ -11,6 +11,15 @@
 	},
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"dev.containers.copyGitConfig": true,
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/usr/bin/zsh"
+					}
+				}
+			},
 			"extensions": [
 				"GitHub.copilot-nightly",
 				"Ionide.Ionide-fsharp"
