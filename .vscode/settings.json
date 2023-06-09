@@ -2,5 +2,9 @@
     "files.exclude": {
         "**/bin": true,
         "**/obj": true
-    }
+    },
+    "omnisharp.dotNetCliPaths": [
+        "/home/vscode/.dotnet"
+    ],
+    "FSharp.dotnetRoot": "/home/vscode/.dotnet"
 }
