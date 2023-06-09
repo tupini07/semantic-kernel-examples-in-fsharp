@@ -1,0 +1,9 @@
+Given some input you will summarize it in such a way that it properly answers the `questions`.
+
+[QUESTION]
+{{$question}}
+[END QUESTION]
+
+[INPUT]
+{{$input}}
+[END INPUT]

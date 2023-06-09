@@ -8,52 +8,24 @@ open Microsoft.SemanticKernel.Planning.Sequential
 open System
 open FileSystemSkill
 open Microsoft.SemanticKernel.CoreSkills
+open KernelSettings
+open Microsoft.Extensions.Logging
+open KernelBuilderExtensions
 
-let rec private runPlan (kernel: IKernel) (plan: Plan) =
-    async {
-        if not plan.HasNextStep then
-            printfn "Plan execution completed!"
+let createNovel () =
+    let loggerFactory =
+        LoggerFactory.Create (fun builder ->
+            builder
+                .SetMinimumLevel(KernelSettings.LogLevel)
+                .AddDebug()
+            |> ignore)
 
-        else
-            printfn "-----------------------------------"
-            printfn "Starting step execution..."
+    let kernel =
+        KernelBuilder()
+            .WithLogger(loggerFactory.CreateLogger<IKernel>())
+            .WithCompletionService(KernelSettings)
+            .Build()
 
-            do!
-                kernel.StepAsync(plan)
-                |> Async.AwaitTask
-                |> Async.Ignore
-
-            printfn "Finished step"
-            printfn "%s" (plan.State.ToString())
-
-            return! runPlan kernel plan
-    }
-
-let private printPlan (plan: Plan) =
-    printfn ""
-    printfn "Original plan:\n%s" plan.Description
-
-    printfn ""
-    printfn "Plan steps:"
-
-    for step in plan.Steps do
-        let paramsS =
-            step.Parameters
-            |> Seq.map (fun kvp -> sprintf "%s='%s'" kvp.Key kvp.Value)
-            |> String.concat ", "
-
-        let outputs =
-            if step.Outputs.Count > 0 then
-                "=> " + (step.Outputs |> String.concat ", ")
-            else
-                ""
-
-        printfn "> %s.%s [%s] %s" step.SkillName step.Name paramsS outputs
-
-    printfn ""
-
-
-let createNovel (kernel: IKernel) =
     let skillsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "skills")
 
     // import skills into kernel so it's aware of them
@@ -80,19 +52,14 @@ let createNovel (kernel: IKernel) =
         |> Async.AwaitTask
         |> Async.RunSynchronously
 
-    printPlan plan
+    Utils.printPlan plan
 
-    // ask user if we should proceed with plan
-    printfn "Proceed with plan? (y/n)"
-    let proceed = Console.ReadLine() = "y"
-
-    if not proceed then
-        printfn "Stopping execution..."
-        exit 0
+    Utils.proceedOrExit ()
 
     printfn "Running plan..."
 
     // Note another possibility is to use `kernel.RunAsync(plan)` which will run
     // the whole plan and report the output. But I wanted a custom run loop to
     // be able to log progress and see what's going on inside.
-    runPlan kernel plan |> Async.RunSynchronously
+    Utils.runPlan kernel plan
+    |> Async.RunSynchronously

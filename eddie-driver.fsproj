@@ -13,11 +13,14 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="0.15.230531.5-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Skills.Web" Version="0.15.230531.5-preview" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config/KernelSettings.fs" />
     <Compile Include="config/KernelBuilderExtensions.fs" />
     <Compile Include="skills/FileSystemSkill.fs" />
+    <Compile Include="Utils.fs" />
+    <Compile Include="HelpfulChat.fs" />
     <Compile Include="NovelCreator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

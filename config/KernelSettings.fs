@@ -15,6 +15,7 @@ type KernelSettings =
       ServiceId: String
       DeploymentOrModelId: String
       ApiKey: String
+      BingApiKey: String
       LogLevel: LogLevel }
 
 let KernelSettings =
@@ -34,4 +35,5 @@ let KernelSettings =
       ServiceId = rawSettings.ServiceId
       DeploymentOrModelId = rawSettings.DeploymentOrModelId
       ApiKey = rawSettings.ApiKey
+      BingApiKey = rawSettings.BingApiKey
       LogLevel = LogLevel.Parse(rawSettings.LogLevel) }
