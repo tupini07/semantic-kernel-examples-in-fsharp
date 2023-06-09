@@ -20,8 +20,8 @@
     <Compile Include="config/KernelBuilderExtensions.fs" />
     <Compile Include="skills/FileSystemSkill.fs" />
     <Compile Include="Utils.fs" />
-    <Compile Include="HelpfulChat.fs" />
-    <Compile Include="NovelCreator.fs" />
+    <Compile Include="Examples/HelpfulChat.fs" />
+    <Compile Include="Examples/NovelCreator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
