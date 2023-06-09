@@ -6,5 +6,8 @@ obj
 *.log
 *.tmp
 .semantic-kernel
+
 workdir
+!workdir/.gitkeep
+
 .fake

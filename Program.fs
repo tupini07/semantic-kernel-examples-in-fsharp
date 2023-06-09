@@ -2,7 +2,7 @@
 
 [<EntryPoint>]
 let rec main argv =
-    printfn
+    printf
         """
 ===================================        
 Which example do you want to run?
@@ -11,7 +11,7 @@ Which example do you want to run?
 2) Question Answerer
 q) Quit
 
-Enter your input:"""
+Enter your input: """
 
     let input = Console.ReadLine().Trim()
 

@@ -59,9 +59,10 @@ let rec runPlan (kernel: IKernel) (plan: Plan) =
             printfn "-----------------------------------"
 
         else
-            printfn "Starting step execution..."
-
             let currentStep = plan.Steps.[plan.NextStepIndex]
+
+            printfn "Starting step %d execution ..." plan.NextStepIndex
+            printStep currentStep
 
             do!
                 kernel.StepAsync(plan)
@@ -69,8 +70,8 @@ let rec runPlan (kernel: IKernel) (plan: Plan) =
                 |> Async.Ignore
 
             printfn "Finished step"
-            printStep currentStep
 
+            printfn "\nOutputs:"
             for stepOutName in currentStep.Outputs do
                 printfn "\t - %s => %s" stepOutName plan.State[stepOutName]
 

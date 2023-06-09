@@ -34,6 +34,9 @@ let private createKernel () =
 
     let skillsDir = Environment.CurrentDirectory + "/skills"
 
+    kernel.ImportSemanticSkillFromDirectory(skillsDir, "SummarizeSkill")
+    |> ignore
+
     kernel.ImportSemanticSkillFromDirectory(skillsDir, "MiscSkill")
     |> ignore
 

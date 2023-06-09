@@ -49,7 +49,7 @@ let createNovel () =
         SequentialPlanner(kernel, plannerConfig)
         |> fun p ->
             p.CreatePlanAsync(
-                "Create a book with 3 chapters about a llama trying to order a coffee from a turtle in the forest. Save the story to a file. Name the file something that is relevant to the story, and indicate where each chapter starts."
+                "Create a book with 3 chapters about a T-REX trying to put on some shoes. As each chapter is written, save it the file for the story."
             )
         |> Async.AwaitTask
         |> Async.RunSynchronously
